@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i$di0kle*__+01#18ht#qs$y57em8@=-n-wx12_e6m0b#n%djb'
+#SECRET_KEY = 'i$di0kle*__+01#18ht#qs$y57em8@=-n-wx12_e6m0b#n%djb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,14 +123,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_ROOT = '/'
 STATIC_URL = '/static/'
+if DEBUG == False:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static")
+    ]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
-]
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 移除邮箱验证，改为直接注册
 ACCOUNT_ACTIVATION_DAYS = 0
 REGISTRATION_AUTO_LOGIN = True
@@ -143,3 +144,4 @@ REGISTRATION_OPEN = True
 # EMAIL_HOST_USER = 'your_email@qq.com'
 # EMAIL_HOST_PASSWORD = 'your_email_password'
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

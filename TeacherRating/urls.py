@@ -18,9 +18,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from TeacherRating import views
-from django.urls import re_path
-from django.views import static
-from django.conf import settings
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('accounts/', include('registration.backends.simple.urls')),
@@ -34,6 +32,3 @@ urlpatterns = [
     path('questionnaire/', include(('questionnaire.urls', 'questionnaire'), namespace='questionnaire')),
     path('admin/', admin.site.urls),
 ]
-
-urlpatterns += [re_path(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static')]
-urlpatterns += [re_path(r'^media/(?P<path>.*)$', static.serve, {"document_root": settings.MEDIA_ROOT})]
