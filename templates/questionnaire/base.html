@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'questionnaire/questionnaire.css' %}">
+{% endblock %}
+
+{% block body_class %}hold-transition skin-blue layout-top-nav{% endblock %}
+
+{% block include %}
+    {% include 'questionnaire/header.html' %}
+{% endblock %}

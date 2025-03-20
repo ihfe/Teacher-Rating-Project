@@ -1,0 +1,8 @@
+Django==3.2.19
+django-ranged-response==0.2.0
+django-registration-redux==2.9
+django-simple-captcha==0.5.18
+peewee==3.16.3
+Pillow==9.5.0
+pytz==2023.3
+six==1.11.0

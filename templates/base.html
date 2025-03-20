@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ currentLang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-lang-key="title">{% block title %}{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminlte/css/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static 'adminlte/css/skins/_all-skins.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/my_common.css' %}">
+    <script src="{% static 'jquery/jquery-3.2.1.min.js' %}" defer></script>
+    {% block link %}{% endblock %}
+    
+</head>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+<div class="wrapper">
+    {% include 'header.html' %}
+    {% block include %}
+    {% endblock %}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                {% block page_title %}{% endblock %}
+                <small>{% block page_description %}{% endblock %}</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> <span data-lang-key="title">首页</span></a></li>
+                {% block breadcrumb %}{% endblock %}
+            </ol>
+            <div class="language-switch">
+                <button onclick="switchLanguage()" class="btn btn-default" data-lang-key="switchLang">切换语言</button>
+            </div>
+        </section>
+        <section class="content">
+            {% block content %}
+            {% endblock %}
+        </section>
+    </div>
+    {% include 'footer.html' %}
+</div>
+
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}" defer></script>
+<script src="{% static 'adminlte/js/adminlte.min.js' %}" defer></script>
+<script src="{% static 'common/common.js' %}" defer></script>
+<script src="{% static 'common/language.js' %}" defer></script>
+{% block script %}{% endblock %}
+
+</body>
+</html>

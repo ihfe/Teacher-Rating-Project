@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'rating/css/rating.css' %}">
+{% endblock %}
+
+{% block include %}
+    {% include 'rating/sidebar.html' %}
+{% endblock %}

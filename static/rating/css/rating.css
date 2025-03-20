@@ -1,0 +1,17 @@
+.checkbox-column {
+    width: 40px;
+}
+
+.id-column {
+    width: 10px;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.modal {
+    display: none;
+}
+
+/* Add more rating specific styles here */

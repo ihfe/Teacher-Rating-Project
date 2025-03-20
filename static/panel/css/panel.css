@@ -1,0 +1,117 @@
+.checkbox-column {
+    width: 40px;
+}
+
+.id-column {
+    width: 10px;
+}
+
+/* 表格样式 */
+.table-container {
+    margin: 15px 0;
+    overflow-x: auto;
+}
+
+.table > thead > tr > th {
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #ddd;
+    font-weight: 600;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.table-hover > tbody > tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-hover > tbody > tr td {
+    cursor: pointer;
+}
+
+/* 按钮样式 */
+.btn-group-actions {
+    margin-bottom: 15px;
+}
+
+.btn-group-actions .btn {
+    margin-left: 8px;
+}
+
+.btn-group-actions .btn i {
+    margin-right: 5px;
+}
+
+/* 面包屑导航 */
+.content-header {
+    padding: 15px;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.content-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.content-header .breadcrumb {
+    float: right;
+    background: transparent;
+    margin-top: 0;
+    padding: 0;
+}
+
+/* 表单样式 */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.form-control:focus {
+    border-color: #3c8dbc;
+    box-shadow: none;
+}
+
+/* 卡片样式 */
+.box {
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.box-header {
+    border-bottom: 1px solid #f4f4f4;
+    padding: 15px;
+}
+
+.box-title {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.box-body {
+    padding: 15px;
+}
+
+/* 提示信息样式 */
+.alert {
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}

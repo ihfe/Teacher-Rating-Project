@@ -1,0 +1,12 @@
+/* 表格样式 */
+table th, table td {
+    border: #0f0f0f 1px solid;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.aver {
+    background-color: #dddddd;
+}

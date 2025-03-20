@@ -1,0 +1,24 @@
+{% extends 'questionnaire/base.html' %}
+{% block title %}<span data-lang-key="selectQuestionnaire">问卷选择</span>{% endblock %}
+{% block content %}
+    <section class="content">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <span data-lang-key="selectEvent">选择事件</span>
+                    </div>
+                    <div class="box-body">
+                        <ul>
+                            {% for event in all_event %}
+                                <li><a href="{% url 'questionnaire:event_overview' event.event_id %}">{{ event.title }}({{ event.description }})</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </section>
+{% endblock %}

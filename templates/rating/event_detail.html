@@ -1,0 +1,52 @@
+{% extends 'rating/base.html' %}
+{% load static %}
+{% block title %}<span data-lang-key="eventDetails">事件详情</span>{% endblock %}
+{% block content %}
+    <section class="content-header">
+        <h1>
+            {{ rating_event.title }}
+            <small>{{ rating_event.description }}</small>
+        </h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <span data-lang-key="basicInfo">基本信息</span>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-6">
+                            <ul>
+                                <li><label><span data-lang-key="createTime">创建时间</span>：</label><span>{{ rating_event.create_time }}</span></li>
+                                <li><label><span data-lang-key="eventStatus">事件状态</span>：</label><span><span data-lang-key="{% if rating_event.status == 0 %}inProgress{% else %}completed{% endif %}">{% if rating_event.status == 0 %}进行中{% else %}已完成{% endif %}</span></span></li>
+                                <li><label><span data-lang-key="voteType">投票类型</span>：</label><span><span data-lang-key="{% if rating_event.vote_type == 0 %}anonymousVote{% else %}namedVote{% endif %}">{% if rating_event.vote_type == 0 %}不记名投票{% else %}记名投票{% endif %}</span></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <span data-lang-key="detailedInfo">详细信息</span>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-12">
+                            <ul>
+                                <li><label><span data-lang-key="classTable">班级表格</span>：</label><a class="btn btn-primary" href="{% url 'rating:detail_class' %}?event_id={{ rating_event.event_id }}"><span data-lang-key="details">详情</span></a></li>
+                                <li><label><span data-lang-key="teacherTable">教师表格</span>：</label><a class="btn btn-primary" href="{% url 'rating:detail_answer' %}?event_id={{ rating_event.event_id }}"><span data-lang-key="details">详情</span></a></li>
+                                <li><label><span data-lang-key="teacherAverageTable">教师均分表格</span>：</label><a class="btn btn-primary" href="{% url 'rating:detail_aver' %}?event_id={{ rating_event.event_id }}"><span data-lang-key="details">详情</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block script %}
+<script src="{% static 'common/language.js' %}" defer></script>
+{% endblock %}

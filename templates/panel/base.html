@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'datatable/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'panel/css/panel.css' %}">
+{% endblock %}
+
+{% block include %}
+    {% include 'templates/panel/sidebar.html' %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="{% url 'panel:index' %}"><span data-lang-key="manage">管理</span></a></li>
+    <li class="active">{% block breadcrumb_active %}{% endblock %}</li>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'datatable/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'datatable/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'panel/js/panel.js' %}"></script>
+    <script src="{% static 'common/language.js' %}"></script>
+    <script>
+        $('table').DataTable();
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePageLanguage();
+        });
+    </script>
+{% endblock %}

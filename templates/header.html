@@ -1,0 +1,74 @@
+{% load static %}
+
+<header class="main-header">
+    <a href="{% url 'index' %}" class="logo">
+        <span class="logo-mini"><b data-lang-key="manage">管理</b></span>
+        <span class="logo-lg"><b data-lang-key="systemTitle">教师评价管理系统</b></span>
+    </a>
+    <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="fa fa-bars"></i>
+        </a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="nav_home"><a href="{% url 'index' %}"><i class="fa fa-home"></i> <span data-lang-key="home">首页</span></a></li>
+                    <li id="nav_panel"><a href="{% url 'panel:index' %}"><i class="fa fa-dashboard"></i> <span data-lang-key="manage">管理</span></a></li>
+                    <li id="nav_rating"><a href="{% url 'rating:index' %}"><i class="fa fa-star"></i> <span data-lang-key="rating">评分</span></a></li>
+                    <li id="nav_questionnaire"><a href="{% url 'questionnaire:index' %}"><i class="fa fa-list-alt"></i> <span data-lang-key="questionnaire">问卷</span></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i>
+                                <span class="hidden-xs">{{ user.username }}</span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <p>{{ user.username }}</p>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{% url 'profile' %}" class="btn btn-default btn-flat" data-lang-key="profile">个人信息</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{% url 'auth_logout' %}" class="btn btn-default btn-flat" data-lang-key="logout">退出登录</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'registration_register' %}"><i class="fa fa-user-plus"></i> <span data-lang-key="register">注册</span></a></li>
+                        <li><a href="{% url 'auth_login' %}"><i class="fa fa-sign-in"></i> <span data-lang-key="login">登录</span></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<script>
+    var link = window.location.pathname;
+    var parts = link.split('/');
+    switch (parts[1]){
+        case "panel":
+            $('#nav_panel').addClass("active");
+            break;
+        case "rating":
+            $('#nav_rating').addClass("active");
+            break;
+        case "questionnaire":
+            $('#nav_questionnaire').addClass("active");
+            break;
+        default:
+            $('#nav_home').addClass("active");
+            break;
+    }
+</script>

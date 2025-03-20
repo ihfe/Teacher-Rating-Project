@@ -1,0 +1,55 @@
+{% extends 'rating/detail/detail_base.html' %}
+{% load static %}
+
+{# 页面标题，支持中英文切换 #}
+{% block title %}
+    <span data-lang-key="classDetailStats">班级详细统计</span>
+{% endblock %}
+
+{# 引入详情页面的样式文件 #}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'rating/css/detail.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="content">
+        {# 评分事件标题和描述信息 #}
+        <div class="row event-header" align="center">
+            <h1 class="event-title">{{ rating_event.title }}</h1>
+            <div class="event-info">
+                <span class="pull-right event-description">{{ rating_event.description }}</span>
+                <br>
+                <span class="pull-right event-time">{{ rating_event.create_time|date:"Y-m-d" }}</span>
+            </div>
+        </div>
+
+        {# 班级评分数据表格 #}
+        <div class="row">
+            <table class="center-align data-table">
+                <thead>
+                    <tr>
+                        <th><span data-lang-key="class">班级</span></th>
+                        <th><span data-lang-key="totalScore">总分</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tlc in info_tlc_list %}
+                        {% for answer in tlc|first %}
+                            {% with the_class=answer|first single=answer|slice:"1:2"|first %}
+                                <tr>
+                                    <td class="class-info">
+                                        {{ the_class.title }}
+                                        {% if the_class.description != "" %}
+                                            <span class="class-description">({{ the_class.description }})</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="score">{{ single }}</td>
+                                </tr>
+                            {% endwith %}
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

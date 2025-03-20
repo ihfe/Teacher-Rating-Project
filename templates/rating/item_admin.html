@@ -1,0 +1,74 @@
+{% extends 'rating/base.html' %}
+{% load static %}
+{% block title %}<span data-lang-key="ratingItemManagement">评分项管理</span>{% endblock %}
+{% block content %}
+    <input type="hidden" id="create_item_url" value="{% url 'rating:create_item' %}">
+
+    <section class="content">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title" data-lang-key="ratingItemPreview">评分项预览</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-danger" onclick="deleteSelectRatingItem();"><i
+                            class="fa fa-trash" data-lang-key="deleteRatingItem">删除评分项</i>
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="createRatingItem()"><i class="fa fa-plus" data-lang-key="addRatingItem">添加评分项</i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <form id="delete_form" action="{% url 'rating:delete_item' %}" method="post">
+                    {% csrf_token %}
+                    <table class="table dataTable">
+                        <thead>
+                        <tr>
+                            <th class="checkbox-column"><input id="select_all_checkbox" type="checkbox"></th>
+                            <th>#</th>
+                            <th data-lang-key="ratingItemName">评分项名称</th>
+                            <th data-lang-key="levelDisplay">级别显示</th>
+                            <th data-lang-key="remarks">备注</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in item_list %}
+                            {% with a_item=item|first %}
+                                <tr class="pointer_tr">
+                                    <td><input class="choose_box" type="checkbox" name="check_{{ a_item.item_id }}">
+                                    </td>
+                                    <td class="pointer_td"
+                                        onclick="clickRatingItem({{ a_item.item_id }})">{{ a_item.item_id }}</td>
+                                    <td class="pointer_td"
+                                        onclick="clickRatingItem({{ a_item.item_id }})">{{ a_item.title }}</td>
+                                    <td class="pointer_td" onclick="clickRatingItem({{ a_item.item_id }})">
+                                        {% with levels=item|last %}
+                                            {% for l in levels %}
+                                                {{ l.title }}:{{ l.score }}<span data-lang-key="points">分</span>;
+                                            {% endfor %}
+                                        {% endwith %}
+                                    </td>
+                                    <td class="pointer_td" onclick="clickRatingItem({{ a_item.item_id }})">
+                                        {% if a_item.description == None %}
+                                        {% else %}
+                                            {{ a_item.description }}
+                                        {% endif %}</td>
+                                </tr>
+                            {% endwith %}
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block script %}
+<script src="{% static 'rating/js/item_admin.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'rating/css/item_admin.css' %}">
+{% endblock %}
+<style>
+.checkbox-column {
+    width: 40px;
+}
+</style>

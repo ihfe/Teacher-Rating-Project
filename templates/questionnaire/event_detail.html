@@ -1,0 +1,62 @@
+{% extends 'questionnaire/base.html' %}
+{% load static %}
+{% block title %}<span data-lang-key="questionnaireDetail">问卷详情</span>{% endblock %}
+{% block content %}
+    {# 问卷内容区域 #}
+    <section class="content">
+        <form id="main-form" action="{% url 'questionnaire:event_detail' event_id classification main_id %}" method="post" onsubmit="disableSubmitButton();">
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    {% csrf_token %}
+                    {% if classification == 0 %}
+                        {% for main in main_list %}
+                            {% with ltoloc=main|first teacher=main|slice:"1:2"|first the_class=main|slice:"2:3"|first lesson=main|slice:"3:4"|first item_list=main|slice:"4:5"|first %}
+                                {# 评分项容器 #}
+                                <div class="box box-warning">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">{{ the_class.title }}-{{ lesson.title }}
+                                            {% if lesson.description != '' %}({{ lesson.description }})
+                                            {% endif %}-{{ teacher.name }}</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        {% for part in item_list %}
+                                            {% with rating_item=part|first level_list=part|last %}
+                                                <p>{{ rating_item.title }}</p>
+                                                <div class="form-group">
+                                                    <div class="radio">
+                                                        {% for rating_level in level_list %}
+                                                            <label>
+                                                                <input type="radio"
+                                                                       name="radio_{{ ltoloc.tlc_id }}_{{ rating_item.item_id }}"
+                                                                       value="{{ rating_level.level_id }}"
+                                                                       required="required">
+                                                                {{ rating_level.title }}
+                                                            </label>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endwith %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endwith %}
+                        {% endfor %}
+                    {% endif %}
+                    {# 提交按钮 #}
+                    <div class="box box-success">
+                        <div class="box box-body">
+                            <button id="submit_button" class="btn btn-success submit-button" type="submit" data-lang-key="submit">提交</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </form>
+    </section>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'questionnaire/event_detail.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'questionnaire/questionnaire.css' %}">
+{% endblock %}
