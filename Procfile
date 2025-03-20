@@ -1,0 +1,1 @@
+web: gunicorn TeacherRating.wsgi:application

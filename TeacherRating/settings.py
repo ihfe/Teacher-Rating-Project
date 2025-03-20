@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,10 +21,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i$di0kle*__+01#18ht#qs$y57em8@=-n-wx12_e6m0b#n%djb'
+#SECRET_KEY = 'i$di0kle*__+01#18ht#qs$y57em8@=-n-wx12_e6m0b#n%djb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -144,4 +144,4 @@ REGISTRATION_OPEN = True
 # EMAIL_HOST_PASSWORD = 'your_email_password'
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-ALLOWED_HOSTS = ['Yuan37.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
