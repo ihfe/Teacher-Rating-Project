@@ -143,3 +143,5 @@ REGISTRATION_OPEN = True
 # EMAIL_HOST_USER = 'your_email@qq.com'
 # EMAIL_HOST_PASSWORD = 'your_email_password'
 # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+ALLOWED_HOSTS = ['Yuan37.pythonanywhere.com']
